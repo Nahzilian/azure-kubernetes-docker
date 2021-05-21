@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  angular-services:
+    image: weatherui
+    build:
+      context: ./weather-ui
+      dockerfile: Dockerfile
+    ports: 
+      - "80:80"
+    volumes:
+      - ./weather-ui:/usr/src/app/weather-ui
+      - /usr/src/app/weather-ui/node_modules 
+  local.functions:
+    image: azurefunc
+    build:
+      context: ./WeatherFunc
+      dockerfile: Dockerfile
+    ports:
+    - "8080:8080"
